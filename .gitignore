@@ -1,0 +1,9 @@
+dist
+.DS_Store
+.idea
+node_modules
+coverage
+temp
+explorations
+TODOs.md
+*.log
