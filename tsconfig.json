@@ -3,9 +3,9 @@
     "baseUrl": ".",
     "outDir": "dist",
     "sourceMap": true,
-    "target": "es2016",
+    "target": "ES2016",
     "useDefineForClassFields": false,
-    "module": "esnext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "allowJs": false,
     "strict": true,
@@ -16,19 +16,8 @@
     "removeComments": false,
     "jsx": "preserve",
     "lib": ["esnext", "dom"],
-    "types": ["jest", "puppeteer", "node"],
+    "types": ["node"],
     "rootDir": ".",
-    "paths": {
-      "@vue/compat": ["packages/vue-compat/src"],
-      "@vue/*": ["packages/*/src"],
-      "vue": ["packages/vue/src"]
-    }
+    "paths": {}
   },
-  "include": [
-    "packages/global.d.ts",
-    "packages/*/src",
-    "packages/runtime-dom/types/jsx.d.ts",
-    "packages/*/__tests__",
-    "test-dts"
-  ]
 }

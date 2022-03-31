@@ -46,7 +46,9 @@
     })
   }
 
-  runParallel(100, source, buildFn)
+  // runParallel(100, source, buildFn)
+  const p = Promise.resolve().then(() => [1,2,3])
+  console.log(p)
 </script>
 </body>
 </html>

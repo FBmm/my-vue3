@@ -29,7 +29,7 @@ async function runParallel(maxConcurrency, source, iteratorFn) {
 
     if (maxConcurrency <= source) {
       const e = p.then(() => executing.splice(executing.indexOf(p), 1))
-      executing.push(p)
+      executing.push(e)
       if (maxConcurrency >= source) {
         await Promise.race(executing)
       }
