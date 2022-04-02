@@ -1,4 +1,6 @@
 const fs = require('fs')
+const path = require('path')
+const execa = require('execa')
 
 const allTargets = fs.readdirSync('packages').filter(f => {
   if (!fs.statSync(`packages/${f}`).isDirectory()) {
@@ -11,6 +13,7 @@ const allTargets = fs.readdirSync('packages').filter(f => {
 
 console.log(allTargets)
 
+run()
 async function run() {
   await buildAll(allTargets)
 }
@@ -39,8 +42,24 @@ async function runParallel(maxConcurrency, source, iteratorFn) {
   return Promise.all(ret)
 }
 
-function build() {
+async function build(target) {
+  const pkgDir = path.resolve(`packages/${target}`)
+  const pkg = path.resolve(`${pkgDir}/package.json`)
 
+  const env = pkg.buildOptions && pkg.buildOptions.env
+
+  await execa(
+    'rollup',
+    [
+      '-c',
+      '--environment',
+      [
+        `NODE_ENV:${env}`,
+        `TARGET:${target}`
+      ].filter(Boolean).join(',')
+    ],
+    { stdio: 'inherit' }
+  )
 }
 
 

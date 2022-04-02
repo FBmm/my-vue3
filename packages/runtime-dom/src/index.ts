@@ -1,5 +1,6 @@
-import { Test } from '../../runtime-core/src/index'
+import { Test } from '@vue/runtime-core'
 
-const t = new Test('test')
-console.log(t.getName())
+export const t = new Test('test')
+
+export * from '@vue/runtime-dom'
 
