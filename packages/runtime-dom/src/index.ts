@@ -2,13 +2,9 @@ import { createRenderer } from '@vue/runtime-core'
 import {extend} from "@vue/shared";
 import {nodeOps} from "./nodeOps";
 import {patchProp} from "./patchProp";
+import {Renderer} from "../../runtime-core/src/renderer";
 
-type CreateAppFunction<HostElement> = any
-
-export interface Renderer<HostElement> {
-  render: any,
-  createApp: CreateAppFunction<HostElement>,
-}
+export type CreateAppFunction<HostElement> = any
 
 let renderer: Renderer<Element | ShadowRoot>
 
