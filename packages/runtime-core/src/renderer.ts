@@ -1,6 +1,7 @@
 import {CreateAppFunction} from "@vue/runtime-dom";
+import {createAppAPI} from "./apiCreateApp";
 
-interface RendererOptions<
+export interface RendererOptions<
   HostNode,
   HostElement
 > {
@@ -15,6 +16,7 @@ type VNode = any
 export interface RendererNode {
   [key: string]: any
 }
+
 export interface RenderElement extends RendererNode {}
 
 type PatchFn = (
@@ -36,16 +38,11 @@ function baseCreateRenderer<HostNode, HostElement>(options: RendererOptions<Host
   const target: any = window
   target.__VUE__ = true
 
-  const {
-    insert,
-    remove
-  } = options
+  const render = () => {
 
-  const patch: PatchFn = (
-    n1,
-    n2,
-    container
-  ) => {
-    if (n1 === n2) return
+  }
+  return {
+    render,
+    createApp: createAppAPI(render)
   }
 }
