@@ -13,6 +13,10 @@ export interface RendererOptions<
 
 type VNode = any
 
+export type RootRenderFunction = (
+  vnode: VNode,
+) => void
+
 export interface RendererNode {
   [key: string]: any
 }
