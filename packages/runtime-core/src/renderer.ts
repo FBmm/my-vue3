@@ -25,6 +25,11 @@ type PatchFn = (
   container: RenderElement
 ) => void
 
+export type RootRenderFunction<HostElement = RenderElement>  = (
+  vnode: VNode | null,
+  container: HostElement,
+) => void
+
 export interface Renderer<HostElement> {
   render: any,
   createApp: CreateAppFunction<HostElement>,
