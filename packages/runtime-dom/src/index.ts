@@ -2,11 +2,8 @@ import { createRenderer } from '@vue/runtime-core'
 import {extend} from "@vue/shared";
 import {nodeOps} from "./nodeOps";
 import {patchProp} from "./patchProp";
-import {Renderer} from "../../runtime-core/src/renderer";
 
-export type CreateAppFunction<HostElement> = any
-
-let renderer: Renderer<Element | ShadowRoot>
+let renderer: any
 
 const renderOptions = extend({ patchProp }, nodeOps)
 
@@ -14,10 +11,10 @@ function ensureRenderer() {
   return renderer || (renderer = createRenderer(renderOptions))
 }
 
-export const createApp = ((...args) => {
+export const createApp = ((...args: any) => {
   const app = ensureRenderer().createApp(...args)
   return app
-}) as CreateAppFunction
+})
 
 export * from '@vue/runtime-dom'
 

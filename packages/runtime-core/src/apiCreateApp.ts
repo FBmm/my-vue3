@@ -1,23 +1,3 @@
-import {RootRenderFunction} from "./renderer";
-import {CreateAppFunction} from "@vue/runtime-dom";
-
-export interface App {
-  [key: string]: any
-}
-
-export interface AppConfig {
-  [key: string]: any
-}
-
-export interface AppContext {
-  app: App,
-  config: AppConfig,
-  mixins: any,
-  components: any,
-  directives: any,
-  provides: any,
-}
-
 const isFunction = (val: unknown): val is Function => typeof val === 'function'
 
 function createAppContext(): any {
@@ -34,9 +14,9 @@ function createAppContext(): any {
 let uid = 0
 
 export function createAppAPI(
-  render,
+  render: any,
 ) {
-  return function createApp(rootComponent, rootProps = null) {
+  return function createApp(rootComponent: any, rootProps = null) {
 
     const context = createAppContext()
 
@@ -50,7 +30,7 @@ export function createAppAPI(
       _context: context,
       _instance: null,
 
-      use(plugin, ...options) {
+      use(plugin: any, ...options: any) {
         if (installedPlugins.has(plugin)) {
           console.warn('Plugin has already in app')
         } else if (plugin && isFunction(plugin.install)) {
@@ -67,7 +47,7 @@ export function createAppAPI(
 
       },
 
-      component(name, component) {
+      component(name: any, component: any) {
         if (!component) {
           return context.components[name]
         }
@@ -75,7 +55,7 @@ export function createAppAPI(
         return app
       },
 
-      directive(name, directive) {
+      directive(name: any, directive: any) {
         if (!directive) {
           return context.directives[name]
         }
